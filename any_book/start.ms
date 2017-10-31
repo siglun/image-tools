@@ -1,0 +1,16 @@
+.DOCHEADER OFF
+.COVERTEXT
+.FT BI
+.PT_SIZE 14
+.LS 14
+.SP 8c
+.CENTER
+Play it again
+.SP .5v
+.FT R
+.PT_SIZE 12
+.IB 6P
+Sigfrid Lundberg
+.COVERTEXT OFF
+.START
+.NEWPAGE

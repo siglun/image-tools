@@ -1,0 +1,56 @@
+#!/usr/bin/perl -w
+
+use strict;
+use Image::ExifTool;
+my $count = 0;
+while(my $file = <>) {
+    chomp $file;
+
+    next if $file =~ m/^#/;
+    
+    next unless $file =~ m/((jpeg)|(jpg)|(png))$/i;
+    
+    $count++;
+    my $eps = $file;
+    $eps =~ s/\.((jpeg)|(jpg)|(png))$/.eps/i;
+    $eps =~ s|^.*/([^/]+)$|eps_dir/$1|;
+    my $caption = $eps;
+    $caption =~ s|\.eps$|.ms|i;
+    $caption =~ s|eps_dir/|texts/|;
+
+    if(-f $file && -eps ) {
+
+        my $exif = new Image::ExifTool qw(:Public);
+	$exif->ExtractInfo($file);
+	my $dateTime = $exif->GetValue('DateTimeOriginal') ? $exif->GetValue('DateTimeOriginal'): "";
+	my $height = $exif->GetValue('ImageHeight');
+	my $width  = $exif->GetValue('ImageWidth');
+	my $date = "";
+	my $time = "";
+	($date,$time)=split(/\s+/,$dateTime) if $dateTime;
+	$date =~ s|:|-|g;
+
+
+	my $wid = "15.0c";
+	my $align = " -R ";
+#	$align = "-R" if($count % 2 == 1);
+	if(-s $caption) {
+	    print ".NEWPAGE\n";
+	    print ".PP\n";
+	    print ".so $caption\n";
+	} else {
+	    print ".PP\n";
+	    print ".SP 15c\n";
+	}
+	print ".NEWPAGE\n";
+	print ".PP\n";
+	print ".SP 4.0c\n" if $height < $width;
+	print ".PSPIC $align $eps $wid\n";
+	print ".PT_SIZE -2\n";
+	print "$date ";
+	print "$time ";
+	#	print "$file\n";
+	print "\n";
+	print ".PT_SIZE +2\n";
+    }
+}

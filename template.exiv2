@@ -1,0 +1,20 @@
+del Xmp.dc.description
+set Xmp.dc.description Description goes here
+del Xmp.dc.subject
+del Xmp.lr.hierarchicalSubject
+set Xmp.dc.subject XmpBag Sweden
+set Xmp.dc.subject Skåne
+set Xmp.dc.subject Lund
+# set Xmp.dc.subject Carl Zeiss
+# set Xmp.dc.subject Biogon T* 2|35
+# set Xmp.dc.subject ZM
+# set Xmp.dc.subject 35mm f|2.0 ZM Biogon
+set Xmp.lr.hierarchicalSubject XmpBag Places|Sweden
+set Xmp.lr.hierarchicalSubject Places|Sweden|Skåne
+set Xmp.lr.hierarchicalSubject Places|Sweden|Skåne|Lund
+# set Xmp.lr.hierarchicalSubject Lens|ZM
+# set Xmp.lr.hierarchicalSubject Lens|Carl Zeiss
+# set Xmp.lr.hierarchicalSubject Lens|Carl Zeiss|Biogon
+# set Xmp.lr.hierarchicalSubject Lens|Carl Zeiss|Biogon|35mm
+set Xmp.lr.hierarchicalSubject Lens|Leica|APO-Summicron-M
+set Xmp.lr.hierarchicalSubject Lens|Leica|APO-Summicron-M|50mm f2.0 ASPH

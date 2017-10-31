@@ -1,0 +1,10 @@
+<collection xmlns="http://exist-db.org/collection-config/1.0"
+	    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <index>
+    <lucene>
+      <analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer"/>
+      <text qname="rdf:Description" />
+      <text qname="rdf:li" />
+    </lucene>
+  </index>
+</collection>

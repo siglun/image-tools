@@ -1,0 +1,34 @@
+#!/usr/bin/perl -w
+
+use Image::ExifTool;
+
+system ("mkdir eps_dir");
+
+while(my $file = <STDIN>) {
+    chomp $file;
+    next if $file =~ m/^#/;
+
+    my $exif = new Image::ExifTool qw(:Public);
+    $exif->ExtractInfo($file);
+    my $dateTime = $exif->GetValue('DateTimeOriginal');
+    my $height = $exif->GetValue('ImageHeight');
+    my $width  = $exif->GetValue('ImageWidth');
+
+    my $printwidth = int(300*300/25.4);
+    my $eps = $file;
+
+    $eps =~ s|^.*\/||;
+
+    $eps =~ s/\.((jpeg)|(jpg)|(png))$/.eps/i;
+
+    my $rotate = ""; 
+
+    if($ARGV[0] =~ m/rotate/) {
+	$rotate = $height < $width ? " -rotate 270 " : "";
+    }
+
+    print "$file | $eps | h = $height w = $width |  $rotate\n";
+
+    system "convert $rotate  $file ./eps_dir/$eps";
+
+}

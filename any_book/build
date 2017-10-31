@@ -1,0 +1,17 @@
+#!/bin/sh
+
+cat images.text | ./make_ms > content.ms
+cat images.text | ./make_eps 
+
+# rm folded_book.pdf book.pdf 
+soelim parameters.ms book.ms start.ms content.ms | groff -mom -Tps -Kutf8 > book.ps
+
+ps2pdf book.ps 
+
+#psbook -s8 book.ps | psnup -2  > folded_book.ps
+#ps2pdf folded_book.ps
+
+rm book.ps folded_book.ps
+
+
+
