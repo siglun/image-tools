@@ -90,7 +90,7 @@ for $doc in collection("/db/galleri")//rdf:Description[ft:query(.,$query)]
 order by $doc//exififd:CreateDate[string()][1] descending
 return $doc
 else if($keyword) then
-for $doc in collection("/db/galleri")//rdf:Description[contains(xlr:HierarchicalSubject/rdf:Bag/rdf:li|xmpdc:subject/rdf:Bag/rdf:li,$keyword)]
+for $doc in collection("/db/galleri")//rdf:Description[contains(xlr:HierarchicalSubject/rdf:Bag/rdf:li,$keyword) or contains(xmpdc:Subject/rdf:Bag/rdf:li,$keyword)]
 order by $doc//exififd:CreateDate[string()][1] descending
 return $doc
 else if($album) then
